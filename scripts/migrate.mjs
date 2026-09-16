@@ -14,7 +14,21 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import pg from "pg";
 
-const databaseUrl = process.env.DATABASE_URL;
+function withVerifyFullSsl(url) {
+  if (!url) return url;
+  try {
+    const parsed = new URL(url);
+    const mode = (parsed.searchParams.get("sslmode") ?? "").toLowerCase();
+    if (mode === "require" || mode === "prefer" || mode === "verify-ca") {
+      parsed.searchParams.set("sslmode", "verify-full");
+    }
+    return parsed.toString();
+  } catch {
+    return url.replace(/sslmode=(require|prefer|verify-ca)\b/i, "sslmode=verify-full");
+  }
+}
+
+const databaseUrl = withVerifyFullSsl(process.env.DATABASE_URL);
 if (!databaseUrl) {
   console.log(
     "[migrate] DATABASE_URL not set — skipping (the PGLite fallback migrates itself).",
