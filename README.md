@@ -1,4 +1,4 @@
-# Asha Menon — Studio
+# Soham Ray — Studio
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -26,7 +26,7 @@ The public site is a résumé. Studio is a locked editor for the owner. One depl
 ### Local (sample data, in-memory database)
 
 ```bash
-git clone https://github.com/spellblade/asha-menon-studio.git
+git clone https://github.com/spellblade/soham-ray-studio.git
 cd REPO
 cp .env.example .env
 npm ci

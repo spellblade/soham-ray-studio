@@ -5,7 +5,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "Asha Menon";
+const APP_NAME = "Soham Ray";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -16,7 +16,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Editorial portfolio and CV for Asha Menon, software engineer. Selected case studies, tools, and contact.",
+          "Editorial portfolio and CV for Soham Ray, software engineer. Selected case studies, tools, and contact.",
       },
       { name: "theme-color", content: "#f4efe6" },
     ],

@@ -12,9 +12,8 @@ export const getProfile = createServerFn({ method: "GET" }).handler(async () => 
     `;
     if (!rows[0]) return DEFAULT_PROFILE;
     const parsed = parseProfile(rows[0].data);
-    // Sample was rewritten from design-engineer to software-engineer.
-    // Do not keep the old published sample sitting in the local DB.
-    if (parsed.role === "Design Engineer") return DEFAULT_PROFILE;
+    // Sample was rewritten. Do not keep the old published sample sitting in the local DB.
+    if (parsed.role === "Design Engineer" || parsed.name === "Asha Menon") return DEFAULT_PROFILE;
     return parsed;
   } catch (err) {
     console.error("[profile] falling back to sample content:", err);
