@@ -2,7 +2,7 @@
 
 Editorial software-engineer portfolio: one public CV, one private Studio.
 
-**Stack:** Vite SPA, React Router, React 19, Tailwind v4, Better Auth (optional identity), Postgres (Neon or PGLite).
+**Stack:** Node 24, Vite SPA, React Router, React 19, Tailwind v4, Better Auth (optional identity), Postgres (Neon or PGLite).
 
 | Document | Target Audience | Primary Content |
 | :--- | :--- | :--- |
