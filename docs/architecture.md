@@ -32,7 +32,7 @@ Better Auth at `/api/auth/*` can sign people in with Google / X / email. That id
 ## Routes
 
 | Path | Role |
-| --- | --- |
+| :--- | :--- |
 | `/` | Public CV |
 | `/work/:projectId` | Case study |
 | `/studio` | Claim / unlock / editor |

@@ -7,19 +7,20 @@ body:
     attributes:
       value: |
         ## Bug Report
-        Thank you for reporting. Please fill out the fields below.
+        Thank you for reporting. Please fill out the fields below to help us isolate and fix the issue.
         Security issues: use a private advisory, not this form.
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: What happened vs what you expected.
+      description: A clear description of what the bug is vs what you expected.
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
       label: Steps to Reproduce
+      description: List the exact steps to reproduce the bug.
       placeholder: |
         1. Run `npm run dev`
         2. Open /studio

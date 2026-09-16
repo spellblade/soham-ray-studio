@@ -2,40 +2,46 @@
 
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](VERSION)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Build Status](https://github.com/spellblade/soham-ray-studio/workflows/CI/badge.svg)](.github/workflows/ci.yml)
 
 > An editorial portfolio and software-engineer CV: selected work, case studies, a PDF export, and a private Studio to publish your own details.
 
 The public site is a résumé. Studio is a locked editor for the owner. One deployment is one CV. Forking the repo and pointing it at **your** database is how someone else gets their own.
 
-**Stack:** Vite SPA, React Router, React 19, Tailwind v4, Better Auth (optional identity), Postgres (Neon or PGLite).
-
 ## Features
 
-- **Selected work** with category chips and hover copy; each card opens a case study (problem, constraint, decision, result, stack).
-- **CV sections** — experience timeline, education, grouped tools, languages, writing. Recognition is optional in Studio.
-- **PDF export** generated in the browser from the same profile.
-- **Contact form** with messages stored for the owner.
-- **Studio key** — a passphrase you claim. Google / X / email never unlock the editor.
-- **Vercel + Neon** in production; embedded Postgres (PGLite) when `DATABASE_URL` is unset.
+- **Selected work**: Category chips and hover copy; each card opens a case study (problem, constraint, decision, result, stack).
+- **CV sections**: Experience timeline, education, grouped tools, languages, writing. Recognition is optional in Studio.
+- **PDF export**: Generated in the browser from the same published profile.
+- **Contact form**: Messages stored for the owner inbox.
+- **Studio key**: A passphrase you claim. Google / X / email never unlock the editor.
+- **Vercel + Neon**: Production on Vercel with Neon; embedded Postgres (PGLite) when `DATABASE_URL` is unset.
 
-## Quick start
+## Quick Start
 
 ### Prerequisites
 
 - Node.js 22+
 - npm 10+
 
-### Local (sample data, in-memory database)
+### Installation
 
 ```bash
 git clone https://github.com/spellblade/soham-ray-studio.git
-cd REPO
+cd soham-ray-studio
 cp .env.example .env
 npm ci
+```
+
+### Usage
+
+```bash
 npm run dev
 ```
 
 Open [http://localhost:8080](http://localhost:8080). Footer → **Studio** to claim a private key, then replace the sample profile.
+
+With no `DATABASE_URL`, the app uses embedded PGLite. Data resets when the process dies.
 
 ### Production (Vercel + Neon)
 
@@ -44,18 +50,16 @@ Open [http://localhost:8080](http://localhost:8080). Footer → **Studio** to cl
 3. Set `DATABASE_URL`, `BETTER_AUTH_SECRET`, and `BETTER_AUTH_URL` on the project.
 4. Deploy. First visit to `/studio` **claims** the lock for that database.
 
-See [docs/setup.md](docs/setup.md).
+See [docs/setup.md](docs/setup.md) for environment variables and troubleshooting.
 
-## Documentation
+## Documentation Map
 
-| Doc | What it covers |
-| --- | --- |
-| [Setup](docs/setup.md) | Local run, env vars, Vercel + Neon |
-| [Usage](docs/usage.md) | Public site, Studio, PDF, contact inbox |
-| [Architecture](docs/architecture.md) | Stack, data model, Studio lock |
-| [Security](docs/security.md) | Key hashing, what is public, how to report issues |
-| [Coding standards](docs/coding-standards.md) | Style, tests, branching |
-| [ADRs](docs/adr/) | Why Studio is a passphrase, why one profile per deploy |
+*   [Developer Setup Guide](docs/setup.md) — Tooling, env vars, local run, and Vercel + Neon.
+*   [Architecture Design](docs/architecture.md) — System data flows, Studio lock, and API routes.
+*   [Usage Manual](docs/usage.md) — Public site, Studio, PDF export, and contact inbox.
+*   [Coding Standards](docs/coding-standards.md) — Style, comments, tests, and banned idioms.
+*   [Security](docs/security.md) — Studio hashing, public vs private surfaces, disclosure.
+*   [Architecture Decisions (ADRs)](docs/adr/) — Why Studio is a passphrase, why a Vite SPA.
 
 ## Contributing
 

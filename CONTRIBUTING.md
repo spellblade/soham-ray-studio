@@ -7,7 +7,7 @@ This repository is a personal portfolio. Forks are welcome; please do not open P
 `develop` → `main`. No `staging` branch.
 
 | Branch | Role |
-| --- | --- |
+| :--- | :--- |
 | `main` | Production. Merge commits only. Tag releases (`v0.1.0`). |
 | `develop` | Integration. Feature PRs squash into here. |
 | `feature/*`, `fix/*` | Cut from `develop`, squash-merge back. |

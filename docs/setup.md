@@ -15,7 +15,7 @@ The app is a Vite SPA with React Router. It listens on `http://localhost:8080`. 
 ## Environment
 
 | Name | Required in production | Purpose |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | `DATABASE_URL` | Yes | Neon pooled Postgres. Without it, Studio saves do not survive restarts. |
 | `BETTER_AUTH_SECRET` | Recommended | Signs identity cookies. **Not** the Studio key. |
 | `BETTER_AUTH_URL` | If identity is on | Public origin, e.g. `https://your-app.vercel.app` |
@@ -36,7 +36,7 @@ Do not paste `DATABASE_URL` into the repository or a screenshot.
 ## Scripts
 
 | Command | What it does |
-| --- | --- |
+| :--- | :--- |
 | `npm run dev` | Vite dev server on port 8080 |
 | `npm run build` | Production build, migrations, PGLite asset copy |
 | `npm run typecheck` | `tsc --noEmit` |

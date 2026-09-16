@@ -1,9 +1,9 @@
-# Security notes
+# Security
 
 ## Public vs private
 
 | Surface | Who |
-| --- | --- |
+| :--- | :--- |
 | CV, work, about, PDF of published profile | Anyone |
 | Contact **submit** | Anyone (rate-limit is not implemented; keep the form if you accept mail) |
 | Studio editor, save, inbox, change key | Holder of the current passphrase + valid session |
