@@ -1,16 +1,16 @@
 import { z } from "zod";
 
-export const socialSchema = z.object({
+const socialSchema = z.object({
   label: z.string(),
   href: z.string(),
 });
 
-export const skillGroupSchema = z.object({
+const skillGroupSchema = z.object({
   group: z.string(),
   items: z.array(z.string()),
 });
 
-export const experienceSchema = z.object({
+const experienceSchema = z.object({
   id: z.string(),
   company: z.string(),
   role: z.string(),
@@ -20,7 +20,7 @@ export const experienceSchema = z.object({
   highlights: z.array(z.string()),
 });
 
-export const educationSchema = z.object({
+const educationSchema = z.object({
   id: z.string(),
   school: z.string(),
   degree: z.string(),
@@ -28,7 +28,7 @@ export const educationSchema = z.object({
   detail: z.string(),
 });
 
-export const projectSchema = z.object({
+const projectSchema = z.object({
   id: z.string(),
   title: z.string(),
   category: z.string(),
@@ -44,12 +44,12 @@ export const projectSchema = z.object({
   stack: z.array(z.string()).default([]),
 });
 
-export const extraItemSchema = z.object({
+const extraItemSchema = z.object({
   label: z.string(),
   meta: z.string(),
 });
 
-export const extraSectionSchema = z.object({
+const extraSectionSchema = z.object({
   id: z.string(),
   title: z.string(),
   items: z.array(extraItemSchema),
@@ -76,8 +76,6 @@ export const profileSchema = z.object({
 
 export type Profile = z.infer<typeof profileSchema>;
 export type Project = z.infer<typeof projectSchema>;
-export type Experience = z.infer<typeof experienceSchema>;
-export type Education = z.infer<typeof educationSchema>;
 export type ExtraSection = z.infer<typeof extraSectionSchema>;
 
 export const DEFAULT_PROFILE: Profile = {
@@ -348,8 +346,4 @@ export function newId(prefix: string) {
     return `${prefix}-${crypto.randomUUID().slice(0, 8)}`;
   }
   return `${prefix}-${Math.random().toString(36).slice(2, 10)}`;
-}
-
-export function projectPath(id: string) {
-  return `/work/${id}`;
 }

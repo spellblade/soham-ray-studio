@@ -1,5 +1,5 @@
 /** Which database backend is active. */
-export type DbSource = "neon" | "pglite";
+type DbSource = "neon" | "pglite";
 
 // An empty/whitespace DATABASE_URL (an easy misconfig in deploy UIs) must mean
 // "unset" — otherwise production would silently run on the PGLite fallback.
@@ -9,12 +9,12 @@ const databaseUrl =
   rawDatabaseUrl && rawDatabaseUrl.trim() ? rawDatabaseUrl : undefined;
 
 /**
- * Active backend: real **Neon** when `DATABASE_URL` is set (deployed / configured
- * sandbox), otherwise a local embedded **PGLite** (Postgres compiled to WASM) so
- * the app has a working database even with nothing configured — the live preview
- * included. Swap in Neon later by just setting `DATABASE_URL`; no code changes.
+ * Active backend: real **Neon** when `DATABASE_URL` is set, otherwise a local
+ * embedded **PGLite** (Postgres compiled to WASM) so the app has a working
+ * database with nothing configured. Swap in Neon later by setting
+ * `DATABASE_URL`; no code changes.
  */
-export const dbSource: DbSource = databaseUrl ? "neon" : "pglite";
+const dbSource: DbSource = databaseUrl ? "neon" : "pglite";
 
 /** Neon strings often use sslmode=require; Node 22+ maps that to verify-full and warns. */
 function withVerifyFullSsl(url: string) {
@@ -66,7 +66,7 @@ const globalRef = globalThis as typeof globalThis & {
  * Result-type parity: Postgres sends every value as text plus a type OID — the
  * JS value is the DRIVER's parsing choice, and pg and PGLite disagree (pg:
  * int8 -> string, date -> local-midnight Date; PGLite: int8 -> BigInt, which
- * JSON.stringify rejects, date -> UTC Date). Normalize both so preview and
+ * JSON.stringify rejects, date -> UTC Date). Normalize both so local PGLite and
  * production return identical, JSON-safe shapes:
  *   int8/bigint (incl. count(*)) -> number (past 2^53 loses precision — cast
  *                                   `::text` if you ever need huge integers)
@@ -144,7 +144,7 @@ async function createPgliteSql(): Promise<Sql> {
   });
   const pg = await globalRef.__pgliteInstance__;
 
-  // Apply migrations/ (the single schema source) so preview matches production.
+  // Apply migrations/ (the single schema source) so local matches production.
   // SQL is inlined by the bundler via import.meta.glob (no runtime fs); applied
   // files are tracked in _migrations. Runs once per module instance — so an HMR
   // reload after adding a migration file applies it live — with passes
@@ -212,9 +212,9 @@ export function getSql(): Promise<Sql> {
 }
 
 /**
- * The shared PGLite instance (preview only), with `migrations/*.sql` applied.
- * Lets Better Auth persist to the SAME embedded DB as app data in preview (via a
- * Kysely dialect). Throws when `DATABASE_URL` is set (that path uses Neon).
+ * The shared PGLite instance (no `DATABASE_URL`), with `migrations/*.sql` applied.
+ * Lets Better Auth persist to the SAME embedded DB as app data (via a Kysely
+ * dialect). Throws when `DATABASE_URL` is set (that path uses Neon).
  */
 export async function getPglite(): Promise<import("@electric-sql/pglite").PGlite> {
   if (dbSource !== "pglite") {
@@ -229,7 +229,7 @@ export async function getPglite(): Promise<import("@electric-sql/pglite").PGlite
 /**
  * Finish DB bootstrap before the server handles traffic.
  *
- * - **PGLite** (preview / no `DATABASE_URL`): open the in-memory DB and apply
+ * - **PGLite** (no `DATABASE_URL`): open the in-memory DB and apply
  *   `migrations/*.sql`. Idempotent — concurrent callers share one promise.
  * - **Neon**: no-op (pool is created lazily on first query).
  *

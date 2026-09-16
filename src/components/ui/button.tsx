@@ -9,16 +9,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-ink text-paper hover:bg-ink-soft",
-        accent: "bg-accent text-accent-fg hover:opacity-90",
         outline:
           "border border-ink/20 bg-transparent text-ink hover:border-ink/50 hover:bg-paper-2",
         ghost: "text-ink hover:bg-ink/5",
-        link: "rounded-none text-ink underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 px-5",
         sm: "h-9 px-3.5 text-[0.8125rem]",
-        lg: "h-12 px-6",
         icon: "size-11",
       },
     },
@@ -29,7 +26,7 @@ const buttonVariants = cva(
   },
 );
 
-export type ButtonProps = React.ComponentProps<"button"> &
+type ButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   };
@@ -41,4 +38,4 @@ function Button({ className, variant, size, asChild = false, ...props }: ButtonP
   );
 }
 
-export { Button, buttonVariants };
+export { Button };

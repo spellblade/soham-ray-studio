@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @theme {
   --color-paper: #f4efe6;
@@ -88,10 +87,6 @@
 }
 
 @layer components {
-  .hairline {
-    background: var(--color-line);
-  }
-
   .project-card .project-copy {
     transform: translateY(0.7rem);
     opacity: 0;

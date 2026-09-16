@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 
-export function requestOrigin(req: IncomingMessage): string {
+function requestOrigin(req: IncomingMessage): string {
   const host = String(req.headers["x-forwarded-host"] ?? req.headers.host ?? "localhost:8080");
   const proto = String(
     req.headers["x-forwarded-proto"] ??

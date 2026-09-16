@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router";
-import { GROK_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/client";
+import { authClient, authEnabled } from "@/lib/auth/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -50,8 +50,8 @@ export function LoginPage() {
           {mode === "signup" ? "Create an email account" : "Email & password"}
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          This is optional identity only. Signing in — with email, Google, or X —
-          never publishes changes. Editing still requires the private studio key.
+          This is optional identity only. Signing in never publishes changes.
+          Editing still requires the private studio key.
         </p>
 
         {authEnabled ? (
@@ -110,25 +110,6 @@ export function LoginPage() {
                 ? "Already have an email account? Sign in"
                 : "Need an account? Create one with email"}
             </button>
-
-            <div className="mt-10 border-t border-line pt-6">
-              <p className="text-xs text-faint">
-                Social sign-in does not unlock the editor.
-              </p>
-              <div className="mt-3 space-y-2">
-                {GROK_PROVIDERS.map((p) => (
-                  <Button
-                    key={p.providerId}
-                    type="button"
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => signIn(p.providerId, { callbackURL: "/studio" })}
-                  >
-                    Continue with {p.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
           </>
         ) : (
           <p className="mt-8 text-sm text-muted">Sign-in is disabled.</p>

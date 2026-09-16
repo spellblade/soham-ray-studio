@@ -27,7 +27,7 @@ Server logic: [`src/lib/studio-lock.server.ts`](../src/lib/studio-lock.server.ts
 
 ## Optional identity
 
-Better Auth at `/api/auth/*` can sign people in with Google / X / email. That identity is **not** wired to `saveProfile`. See [ADR-0002](adr/0002-studio-passphrase-not-oauth.md).
+Better Auth at `/api/auth/*` can create an email account. That identity is **not** wired to `saveProfile`. See [ADR-0002](adr/0002-studio-passphrase-not-oauth.md).
 
 ## Routes
 

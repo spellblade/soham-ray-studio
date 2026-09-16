@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -
 
+### Removed
+
+- Grok App Builder scaffolding: PWA install chrome, live-preview host bridge, Grok OAuth broker, and platform smoke/brand scripts. Optional identity is email/password only.
+
 ## [0.1.0] - 2026-09-07
 
 ### Added

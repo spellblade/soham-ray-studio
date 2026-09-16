@@ -19,7 +19,7 @@ The app is a Vite SPA with React Router. It listens on `http://localhost:8080`. 
 | `DATABASE_URL` | Yes | Neon pooled Postgres. Without it, Studio saves do not survive restarts. |
 | `BETTER_AUTH_SECRET` | Recommended | Signs identity cookies. **Not** the Studio key. |
 | `BETTER_AUTH_URL` | If identity is on | Public origin, e.g. `https://your-app.vercel.app` |
-| `VITE_AUTH_ENABLED` | No | `false` hides Google / X / email UI |
+| `VITE_AUTH_ENABLED` | No | `false` hides the email identity UI |
 
 Studio's passphrase is **not** an env var. It is claimed in `/studio` and stored as a hash in the database.
 
@@ -42,4 +42,4 @@ Do not paste `DATABASE_URL` into the repository or a screenshot.
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | ESLint |
 | `npm test` | Node tests under `scripts/` |
-| `npm run test:ci` | Subset used in GitHub Actions (excludes PWA injector tests that expect a generic `site.json`) |
+| `npm run test:ci` | Same tests, used in GitHub Actions |
