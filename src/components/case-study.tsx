@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import type { Profile, Project } from "@/lib/profile";
 import { SiteFooter } from "@/components/site-footer";
@@ -26,7 +26,7 @@ export function CaseStudyPage({
       <SiteHeader profile={profile} />
       <main className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
         <p className="text-[0.7rem] uppercase tracking-[0.18em] text-muted">
-          <Link to="/" hash="work" className="inline-flex items-center gap-2 hover:text-ink">
+          <Link to="/#work" className="inline-flex items-center gap-2 hover:text-ink">
             <ArrowLeft className="size-3.5" />
             Selected work
           </Link>
@@ -121,7 +121,7 @@ export function CaseStudyMissing({ profile }: { profile: Profile }) {
       <main className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
         <h1 className="font-display text-section tracking-tight">Case study not found</h1>
         <p className="mt-4 text-muted">That project is not on this CV.</p>
-        <Link to="/" hash="work" className="mt-8 inline-flex min-h-11 items-center hover:underline">
+        <Link to="/#work" className="mt-8 inline-flex min-h-11 items-center hover:underline">
           Back to selected work
         </Link>
       </main>

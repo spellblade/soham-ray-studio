@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import type { Profile } from "@/lib/profile";
 
 export function SiteFooter({ profile }: { profile: Profile }) {

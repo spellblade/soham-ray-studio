@@ -35,9 +35,9 @@ export { GROK_PROVIDERS };
 
 // ── Live-preview bearer token ────────────────────────────────────────────────
 // The embedded preview iframe has partitioned cookies, so we keep the session's
-// bearer token in sessionStorage and attach it to every Better Auth request (and
-// to server functions, via `@/lib/auth/middleware`). Empty everywhere except the
-// preview after a popup sign-in, so the cookie path is untouched elsewhere.
+// bearer token in sessionStorage and attach it to every Better Auth request.
+// Empty everywhere except the preview after a popup sign-in, so the cookie
+// path is untouched elsewhere.
 const BEARER_KEY = "grok-auth.bearer-token";
 
 /** The stored preview bearer token, or null. */

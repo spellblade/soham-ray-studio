@@ -7,6 +7,8 @@
 
 The public site is a résumé. Studio is a locked editor for the owner. One deployment is one CV. Forking the repo and pointing it at **your** database is how someone else gets their own.
 
+**Stack:** Vite SPA, React Router, React 19, Tailwind v4, Better Auth (optional identity), Postgres (Neon or PGLite).
+
 ## Features
 
 - **Selected work** with category chips and hover copy; each card opens a case study (problem, constraint, decision, result, stack).

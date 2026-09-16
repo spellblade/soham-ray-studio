@@ -30,14 +30,13 @@
  */
 import { betterAuth } from "better-auth";
 import { bearer, genericOAuth } from "better-auth/plugins";
-import { tanstackStartCookies } from "better-auth/tanstack-start";
-import { getCookie } from "@tanstack/react-start/server";
 import { randomBytes } from "node:crypto";
 import { Pool } from "pg";
 import { ensureDbReady, getPglite } from "../db";
 import { emailAndPasswordEnabled } from "./email-password";
 import { GROK_PROVIDERS } from "./providers";
 import { pgliteDialect } from "./pglite-dialect";
+import { getRequest } from "../request-context";
 import {
   GROK_ISSUER_DEFAULT,
   PREVIEW_ALLOWED_HOSTS,
@@ -237,15 +236,22 @@ export const auth = betterAuth({
     // fires when an Authorization header is present, so the cookie path
     // (deployed apps) is unaffected.
     bearer(),
-
-    // Bridges Better Auth's Set-Cookie into TanStack Start responses. MUST be
-    // last so it runs after every other plugin's hooks.
-    tanstackStartCookies(),
   ],
 });
 
 export function readSessionToken(): string | null {
-  return getCookie(SESSION_TOKEN_COOKIE) ?? null;
+  const request = getRequest();
+  if (!request) return null;
+  const cookie = request.headers.get("cookie") ?? "";
+  const parts = cookie.split(";").map((part) => part.trim());
+  const prefix = `${SESSION_TOKEN_COOKIE}=`;
+  const hit = parts.find((part) => part.startsWith(prefix));
+  if (!hit) return null;
+  try {
+    return decodeURIComponent(hit.slice(prefix.length));
+  } catch {
+    return hit.slice(prefix.length);
+  }
 }
 
 // Re-exported for convenience; the array lives in the dependency-free

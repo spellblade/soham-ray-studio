@@ -1,20 +1,16 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { StudioEditor } from "@/components/studio-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getProfile } from "@/lib/profile-fns";
+import { DEFAULT_PROFILE, type Profile } from "@/lib/profile";
 import { setStudioToken } from "@/lib/studio-session";
 import { claimStudio, studioStatus, unlockStudio } from "@/lib/studio-fns";
 
-export const Route = createFileRoute("/studio")({
-  loader: () => getProfile(),
-  component: StudioPage,
-});
-
-function StudioPage() {
-  const profile = Route.useLoaderData();
+export function StudioPage() {
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [unlocked, setUnlocked] = useState<boolean | null>(null);
   const [claimed, setClaimed] = useState(false);
   const [key, setKey] = useState("");
@@ -23,6 +19,9 @@ function StudioPage() {
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
+    getProfile()
+      .then(setProfile)
+      .catch(() => setProfile(DEFAULT_PROFILE));
     studioStatus()
       .then((s) => {
         setUnlocked(s.unlocked);
@@ -171,7 +170,7 @@ function StudioPage() {
           </Link>
         </div>
       </div>
-      <StudioEditor initial={profile} />
+      {profile ? <StudioEditor initial={profile} /> : <div className="min-h-dvh bg-paper" />}
     </div>
   );
 }

@@ -1,100 +1,45 @@
-import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
-import { studioMiddleware, studioTokenMiddleware } from "@/lib/studio-middleware";
+import { getStudioToken } from "@/lib/studio-session";
 
-const keySchema = z
-  .string()
-  .trim()
-  .min(8, "Use at least 8 characters.")
-  .max(200);
+async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
+  const headers = new Headers(init.headers);
+  if (init.body && !headers.has("content-type")) {
+    headers.set("content-type", "application/json");
+  }
+  const token = getStudioToken();
+  if (token) headers.set("X-Studio-Token", token);
+  const res = await fetch(path, { ...init, headers, credentials: "include" });
+  const body = (await res.json().catch(() => ({}))) as T & { error?: string };
+  if (!res.ok) {
+    throw new Error(body.error || res.statusText || "Request failed.");
+  }
+  return body;
+}
 
-export const studioStatus = createServerFn({ method: "GET" })
-  .middleware([studioTokenMiddleware])
-  .handler(async ({ context }) => {
-    const { sessionIsValid, studioIsClaimed } = await import("./studio-lock.server");
-    const [unlocked, claimed] = await Promise.all([
-      sessionIsValid(context.studioToken),
-      studioIsClaimed(),
-    ]);
-    return { unlocked, claimed };
+export function studioStatus() {
+  return api<{ unlocked: boolean; claimed: boolean }>("/api/studio/status");
+}
+
+export function claimStudio(input: { data: { key: string; confirm: string } }) {
+  return api<{ token: string }>("/api/studio/claim", {
+    method: "POST",
+    body: JSON.stringify(input.data),
   });
+}
 
-export const claimStudio = createServerFn({ method: "POST" })
-  .validator((input: unknown) =>
-    z
-      .object({
-        key: keySchema,
-        confirm: keySchema,
-      })
-      .parse(input),
-  )
-  .handler(async ({ data }) => {
-    const { assertSameSiteRequest } = await import("./auth/isolation.server");
-    const {
-      studioIsClaimed,
-      claimStudioPassphrase,
-      issueStudioSession,
-      StudioLockedError,
-    } = await import("./studio-lock.server");
-    assertSameSiteRequest();
-    if (data.key !== data.confirm) {
-      throw new StudioLockedError("The two keys do not match.");
-    }
-    if (await studioIsClaimed()) {
-      throw new StudioLockedError("Studio is already claimed.");
-    }
-    await claimStudioPassphrase(data.key);
-    const token = await issueStudioSession();
-    return { token };
+export function unlockStudio(input: { data: { key: string } }) {
+  return api<{ token: string }>("/api/studio/unlock", {
+    method: "POST",
+    body: JSON.stringify(input.data),
   });
+}
 
-export const unlockStudio = createServerFn({ method: "POST" })
-  .validator((input: unknown) => z.object({ key: keySchema }).parse(input))
-  .handler(async ({ data }) => {
-    const { assertSameSiteRequest } = await import("./auth/isolation.server");
-    const {
-      passphraseMatches,
-      issueStudioSession,
-      StudioLockedError,
-    } = await import("./studio-lock.server");
-    assertSameSiteRequest();
-    const ok = await passphraseMatches(data.key);
-    if (!ok) throw new StudioLockedError("That key does not match.");
-    const token = await issueStudioSession();
-    return { token };
-  });
+export function lockStudio() {
+  return api<{ ok: true }>("/api/studio/lock", { method: "POST" });
+}
 
-export const lockStudio = createServerFn({ method: "POST" })
-  .middleware([studioTokenMiddleware])
-  .handler(async ({ context }) => {
-    const { revokeStudioSession } = await import("./studio-lock.server");
-    await revokeStudioSession(context.studioToken);
-    return { ok: true as const };
+export function changeStudioKey(input: { data: { currentKey: string; nextKey: string } }) {
+  return api<{ token: string }>("/api/studio/key", {
+    method: "POST",
+    body: JSON.stringify(input.data),
   });
-
-export const changeStudioKey = createServerFn({ method: "POST" })
-  .middleware([studioMiddleware])
-  .validator((input: unknown) =>
-    z
-      .object({
-        currentKey: keySchema,
-        nextKey: keySchema,
-      })
-      .parse(input),
-  )
-  .handler(async ({ data }) => {
-    const {
-      passphraseMatches,
-      rotatePassphrase,
-      issueStudioSession,
-      StudioLockedError,
-    } = await import("./studio-lock.server");
-    if (data.currentKey === data.nextKey) {
-      throw new StudioLockedError("Pick a different key.");
-    }
-    const ok = await passphraseMatches(data.currentKey);
-    if (!ok) throw new StudioLockedError("Current key is wrong.");
-    await rotatePassphrase(data.nextKey);
-    const token = await issueStudioSession();
-    return { token };
-  });
+}

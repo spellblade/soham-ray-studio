@@ -3,10 +3,10 @@
 ```text
 Browser
   │  public pages, PDF (client)
-  │  Studio session token
+  │  Studio session token (X-Studio-Token)
   ▼
-TanStack Start (Vite + Nitro / Vercel)
-  │  server functions
+Vite SPA + React Router (Nitro / Vercel for /api)
+  │  JSON /api/* handlers
   ▼
 Postgres  ── Neon when DATABASE_URL is set
           └── PGLite WASM otherwise
@@ -14,7 +14,7 @@ Postgres  ── Neon when DATABASE_URL is set
 
 ## Profile
 
-One JSON document (`site_profile.id = 'site'`) validated with Zod in [`src/lib/profile.ts`](../src/lib/profile.ts). Public `getProfile` reads it; `saveProfile` requires Studio middleware.
+One JSON document (`site_profile.id = 'site'`) validated with Zod in [`src/lib/profile.ts`](../src/lib/profile.ts). Public `GET /api/profile` reads it; `POST /api/profile` requires a Studio session.
 
 ## Studio lock
 
@@ -34,10 +34,14 @@ Better Auth at `/api/auth/*` can sign people in with Google / X / email. That id
 | Path | Role |
 | --- | --- |
 | `/` | Public CV |
-| `/work/$projectId` | Case study |
+| `/work/:projectId` | Case study |
 | `/studio` | Claim / unlock / editor |
 | `/login` | Optional identity |
 | `/api/auth/*` | Better Auth |
+| `/api/profile` | Read / save the published CV |
+| `/api/studio/*` | Claim, unlock, lock, rotate key |
+| `/api/contact` | Public contact form |
+| `/api/messages` | Studio inbox |
 
 ## Deploy
 

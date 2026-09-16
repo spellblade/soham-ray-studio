@@ -203,7 +203,7 @@ export const DEFAULT_PROFILE: Profile = {
       constraint:
         "Single-tenant deploy. Studio access had to stay a private key. Hosting on Vercel Hobby with Neon Postgres.",
       decision:
-        "TanStack Start + a JSONB profile row. Studio is claimed with a PBKDF2 passphrase. PDF is generated client-side from the published profile.",
+        "Vite + React Router + a JSONB profile row. Studio is claimed with a PBKDF2 passphrase. PDF is generated client-side from the published profile.",
       result:
         "Public site, private editor, durable saves on Neon. Source: github.com/spellblade/soham-ray-studio.",
       stack: ["TypeScript", "React", "PostgreSQL", "Vercel", "Neon"],

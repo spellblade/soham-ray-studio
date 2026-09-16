@@ -10,7 +10,7 @@ npm ci
 npm run dev
 ```
 
-The app listens on `http://localhost:8080`. With no `DATABASE_URL`, it uses embedded PGLite. Data resets when the process dies.
+The app is a Vite SPA with React Router. It listens on `http://localhost:8080`. With no `DATABASE_URL`, it uses embedded PGLite. Data resets when the process dies.
 
 ## Environment
 

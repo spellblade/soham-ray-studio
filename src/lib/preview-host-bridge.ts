@@ -246,7 +246,7 @@ export function installPreviewHostBridge(
   };
 }
 
-/** Collect static path patterns from a TanStack route tree (best-effort). */
+/** Collect static path patterns from a nested route tree (best-effort). */
 export function collectRoutePathsFromTree(routeTree: unknown): string[] {
   const paths = new Set<string>();
 

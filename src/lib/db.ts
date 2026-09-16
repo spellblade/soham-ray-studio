@@ -105,6 +105,9 @@ function createNeonSql(): Promise<Sql> {
     types.setTypeParser(OID_INT8, Number);
     types.setTypeParser(OID_DATE, identity);
     types.setTypeParser(OID_INTERVAL, identity);
+    if (!databaseUrl) {
+      throw new Error("DATABASE_URL is not set");
+    }
     const pool = new Pool({ connectionString: withVerifyFullSsl(databaseUrl) });
     return toSql(async <T>(text: string, params: unknown[]) => {
       const res = await pool.query(text, params);
@@ -186,8 +189,8 @@ let sqlPromise: Promise<Sql> | null = null;
 async function createSql(): Promise<Sql> {
   if (typeof window !== "undefined") {
     throw new Error(
-      "@/lib/db is server-only — call getSql() from a createServerFn handler " +
-        "or a server route loader, never from client code.",
+      "@/lib/db is server-only — call getSql() from an /api handler, " +
+        "never from client code.",
     );
   }
   return dbSource === "neon" ? createNeonSql() : createPgliteSql();

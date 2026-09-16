@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { Profile, Project } from "@/lib/profile";
 import { cn } from "@/lib/utils";
@@ -62,8 +62,7 @@ export function ProjectGrid({ profile }: { profile: Profile }) {
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
-      to="/work/$projectId"
-      params={{ projectId: project.id }}
+      to={`/work/${project.id}`}
       className="project-card group block overflow-hidden rounded-xl bg-paper-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30"
     >
       <div className="relative overflow-hidden">

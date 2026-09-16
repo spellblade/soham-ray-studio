@@ -1,13 +1,11 @@
 import { useState, type FormEvent } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { GROK_PROVIDERS, authClient, authEnabled, signIn } from "@/lib/auth/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export const Route = createFileRoute("/login")({ component: Login });
-
-function Login() {
+export function LoginPage() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

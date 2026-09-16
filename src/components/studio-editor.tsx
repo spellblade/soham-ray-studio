@@ -1,5 +1,4 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
-import { useRouter } from "@tanstack/react-router";
 import { Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -21,7 +20,6 @@ const TABS = ["Identity", "About", "Work", "CV", "Tools", "Inbox", "Lock"] as co
 type Tab = (typeof TABS)[number];
 
 export function StudioEditor({ initial }: { initial: Profile }) {
-  const router = useRouter();
   const [tab, setTab] = useState<Tab>("Identity");
   const [profile, setProfile] = useState<Profile>(initial);
   const [saving, setSaving] = useState(false);
@@ -42,7 +40,6 @@ export function StudioEditor({ initial }: { initial: Profile }) {
     setSaving(true);
     try {
       await saveProfile({ data: profile });
-      await router.invalidate();
       toast.success("Saved. Your public site is updated.");
     } catch {
       toast.error("Could not save. Unlock Studio again and retry.");

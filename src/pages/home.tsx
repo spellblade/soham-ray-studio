@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { AboutSection } from "@/components/about-section";
 import { ContactSection } from "@/components/contact-form";
 import { CvSection } from "@/components/cv-section";
@@ -7,15 +7,17 @@ import { ProjectGrid } from "@/components/project-grid";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SkillsSection } from "@/components/skills-section";
+import { DEFAULT_PROFILE, type Profile } from "@/lib/profile";
 import { getProfile } from "@/lib/profile-fns";
 
-export const Route = createFileRoute("/")({
-  loader: () => getProfile(),
-  component: Home,
-});
+export function HomePage() {
+  const [profile, setProfile] = useState<Profile>(DEFAULT_PROFILE);
 
-function Home() {
-  const profile = Route.useLoaderData();
+  useEffect(() => {
+    getProfile()
+      .then(setProfile)
+      .catch(() => setProfile(DEFAULT_PROFILE));
+  }, []);
 
   return (
     <div className="min-h-dvh">
