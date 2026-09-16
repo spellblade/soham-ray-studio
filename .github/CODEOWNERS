@@ -5,4 +5,3 @@
 /.github/ @spellblade
 /migrations/ @spellblade
 /src/lib/studio-lock.server.ts @spellblade
-/src/lib/studio-middleware.ts @spellblade

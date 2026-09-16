@@ -2,7 +2,7 @@
 
 ## Local
 
-Requires Node 22.
+Requires Node 24 (`nvm use` reads `.nvmrc`). npm 11 ships with that Node.
 
 ```bash
 cp .env.example .env

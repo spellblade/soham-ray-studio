@@ -16,7 +16,7 @@ const databaseUrl =
  */
 const dbSource: DbSource = databaseUrl ? "neon" : "pglite";
 
-/** Neon strings often use sslmode=require; Node 22+ maps that to verify-full and warns. */
+/** Neon strings often use sslmode=require; Node maps that to verify-full and warns. */
 function withVerifyFullSsl(url: string) {
   try {
     const parsed = new URL(url);

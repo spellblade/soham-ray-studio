@@ -21,8 +21,8 @@ The public site is a résumé. Studio is a locked editor for the owner. One depl
 
 ### Prerequisites
 
-- Node.js 22+
-- npm 10+
+- Node.js 24.x
+- npm 11+
 
 ### Installation
 

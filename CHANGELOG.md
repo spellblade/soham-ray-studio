@@ -9,12 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--
+- GitHub branch rulesets: squash-only on `develop`, merge-commit-only on `main`, with CI required.
 
 ### Changed
 
 - Replaced TanStack Start with a Vite SPA and React Router. Studio, Neon, and Better Auth stay.
 - Aligned README, docs index, changelog, EditorConfig, and GitHub templates with universal master template v3 formatting.
+- Runtime is Node 24 / npm 11; CI and `engines` follow `.nvmrc`.
 
 ### Fixed
 
