@@ -90,7 +90,7 @@ export const DEFAULT_PROFILE: Profile = {
   tagline:
     "I build production services and the data paths underneath them — Java at Cerner, TypeScript and Python on public repos since.",
   bio: "Software Engineer / Software Developer I with 2 years 9 months at Cerner Healthcare Solutions (Data Foundations) building production Java services, plus CI/CD (Jenkins, Spinnaker), Git-based releases, and production support. MCA, NIT Jamshedpur.\n\nSince November 2022 I have been doing independent full-stack engineering: TypeScript, React, Node.js, Express.js, Python, FastAPI, REST APIs, and PostgreSQL. Public work lives at github.com/spellblade.",
-  portrait: "/images/portrait.jpg",
+  portrait: "/images/Cropped_portrait.png",
   socials: [
     { label: "Email", href: "mailto:sohamray51@gmail.com" },
     { label: "GitHub", href: "https://github.com/spellblade" },
