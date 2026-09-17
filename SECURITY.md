@@ -18,6 +18,6 @@ Initial response target: **48 hours**.
 
 - The **public CV** is public by design.
 - **Studio** (save profile, inbox) requires the owner passphrase. The phrase is never stored; only a PBKDF2 hash and salt live in Postgres.
-- Google / X / email sign-in, if enabled, is identity only and **does not** unlock Studio.
+- Email sign-in, if enabled, is identity only and **does not** unlock Studio.
 
 See [docs/security.md](docs/security.md) for hashing parameters, session handling, and deployment notes.

@@ -14,6 +14,7 @@ export default tseslint.config(
       ".vercel/**",
       ".nitro/**",
       "node_modules/**",
+      ".kilo/**",
     ],
   },
   js.configs.recommended,
@@ -21,7 +22,7 @@ export default tseslint.config(
   {
     files: ["**/*.{ts,tsx,js,jsx,mjs,cjs}"],
     languageOptions: {
-      ecmaVersion: 2022,
+      ecmaVersion: 2025,
       globals: { ...globals.browser, ...globals.node },
     },
     plugins: {

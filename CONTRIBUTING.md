@@ -13,6 +13,15 @@ This repository is a personal portfolio. Forks are welcome; please do not open P
 | `feature/*`, `fix/*` | Cut from `develop`, squash-merge back. |
 | `hotfix/*` | Cut from `main`; merge to `main` and `develop`. |
 
+GitHub rulesets enforce that split:
+
+| Target | Merge method | Extra gates |
+| :--- | :--- | :--- |
+| `develop` | **Squash** only | PR required, CI `check` must pass |
+| `main` | **Merge commit** only | PR required, code-owner review, CI `check` must pass |
+
+Do not squash `develop` → `main`. Repository admins can merge their own PRs; they cannot push directly or force-push.
+
 Commits follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```text

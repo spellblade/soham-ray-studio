@@ -90,7 +90,7 @@ export function StudioPage() {
                 Studio is locked
               </h1>
               <p className="mt-3 text-sm leading-relaxed text-muted">
-                A Google or X account cannot open this editor. Enter the private
+                An email account cannot open this editor. Enter the private
                 studio key you chose when you claimed the site.
               </p>
               <form onSubmit={(e) => void onUnlock(e)} className="mt-8 space-y-4">
@@ -117,9 +117,9 @@ export function StudioPage() {
                 Claim this studio
               </h1>
               <p className="mt-3 text-sm leading-relaxed text-muted">
-                Anyone can have a Google or X account, so those never unlock the
-                editor. Choose a private key only you know. After this, the public
-                site, CV, and inbox can only be changed with that key.
+                An email login never unlocks the editor. Choose a private key
+                only you know. After this, the public site, CV, and inbox can
+                only be changed with that key.
               </p>
               <form onSubmit={(e) => void onClaim(e)} className="mt-8 space-y-4">
                 <label className="block space-y-2">

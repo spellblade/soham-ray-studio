@@ -14,15 +14,15 @@ The public site is a résumé. Studio is a locked editor for the owner. One depl
 - **CV sections**: Experience timeline, education, grouped tools, languages, writing. Recognition is optional in Studio.
 - **PDF export**: Generated in the browser from the same published profile.
 - **Contact form**: Messages stored for the owner inbox.
-- **Studio key**: A passphrase you claim. Google / X / email never unlock the editor.
+- **Studio key**: A passphrase you claim. An email account never unlocks the editor.
 - **Vercel + Neon**: Production on Vercel with Neon; embedded Postgres (PGLite) when `DATABASE_URL` is unset.
 
 ## Quick Start
 
 ### Prerequisites
 
-- Node.js 22+
-- npm 10+
+- Node.js 24.x
+- npm 11+
 
 ### Installation
 

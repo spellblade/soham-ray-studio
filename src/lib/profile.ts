@@ -1,16 +1,16 @@
 import { z } from "zod";
 
-export const socialSchema = z.object({
+const socialSchema = z.object({
   label: z.string(),
   href: z.string(),
 });
 
-export const skillGroupSchema = z.object({
+const skillGroupSchema = z.object({
   group: z.string(),
   items: z.array(z.string()),
 });
 
-export const experienceSchema = z.object({
+const experienceSchema = z.object({
   id: z.string(),
   company: z.string(),
   role: z.string(),
@@ -20,7 +20,7 @@ export const experienceSchema = z.object({
   highlights: z.array(z.string()),
 });
 
-export const educationSchema = z.object({
+const educationSchema = z.object({
   id: z.string(),
   school: z.string(),
   degree: z.string(),
@@ -28,7 +28,7 @@ export const educationSchema = z.object({
   detail: z.string(),
 });
 
-export const projectSchema = z.object({
+const projectSchema = z.object({
   id: z.string(),
   title: z.string(),
   category: z.string(),
@@ -44,12 +44,12 @@ export const projectSchema = z.object({
   stack: z.array(z.string()).default([]),
 });
 
-export const extraItemSchema = z.object({
+const extraItemSchema = z.object({
   label: z.string(),
   meta: z.string(),
 });
 
-export const extraSectionSchema = z.object({
+const extraSectionSchema = z.object({
   id: z.string(),
   title: z.string(),
   items: z.array(extraItemSchema),
@@ -76,8 +76,6 @@ export const profileSchema = z.object({
 
 export type Profile = z.infer<typeof profileSchema>;
 export type Project = z.infer<typeof projectSchema>;
-export type Experience = z.infer<typeof experienceSchema>;
-export type Education = z.infer<typeof educationSchema>;
 export type ExtraSection = z.infer<typeof extraSectionSchema>;
 
 export const DEFAULT_PROFILE: Profile = {
@@ -92,7 +90,7 @@ export const DEFAULT_PROFILE: Profile = {
   tagline:
     "I build production services and the data paths underneath them — Java at Cerner, TypeScript and Python on public repos since.",
   bio: "Software Engineer / Software Developer I with 2 years 9 months at Cerner Healthcare Solutions (Data Foundations) building production Java services, plus CI/CD (Jenkins, Spinnaker), Git-based releases, and production support. MCA, NIT Jamshedpur.\n\nSince November 2022 I have been doing independent full-stack engineering: TypeScript, React, Node.js, Express.js, Python, FastAPI, REST APIs, and PostgreSQL. Public work lives at github.com/spellblade.",
-  portrait: "/images/portrait.jpg",
+  portrait: "/images/Cropped_portrait.png",
   socials: [
     { label: "Email", href: "mailto:sohamray51@gmail.com" },
     { label: "GitHub", href: "https://github.com/spellblade" },
@@ -197,7 +195,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "An editorial portfolio with a passphrase-locked Studio, case-study pages, and a browser PDF export of the same profile stored in Postgres.",
       href: "https://github.com/spellblade/soham-ray-studio",
-      image: "/images/project-folio.jpg",
+      image: "/images/soham-ray-studio-showcase.png",
       problem:
         "A CV needed to be a public site and a maintainable document, without putting the editor behind a public Google or X login.",
       constraint:
@@ -217,7 +215,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "A form-fill product with a local identity vault, heuristic plus optional AI field mapping, and a Manifest V3 extension for Chrome and Edge.",
       href: "https://github.com/spellblade/imprint",
-      image: "/images/project-meridian.jpg",
+      image: "/images/imprint-showcase.png",
       problem:
         "Filling the same identity across sites meant copy-paste and leaking data into cloud form-fillers.",
       constraint:
@@ -237,7 +235,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "In-browser market-data application with BSE, NSE, and MCX price simulation, screener, technical charts, and portfolio revaluation.",
       href: "https://github.com/spellblade/tradepulse",
-      image: "/images/project-northline.jpg",
+      image: "/images/tradepulse-showcase.png",
       problem:
         "Needed a high-frequency simulated Indian exchange UI without paying for live market feeds.",
       constraint:
@@ -257,7 +255,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "Network diagnostics with multi-stream download and upload tests, latency, jitter, and time-series smoothing.",
       href: "https://github.com/spellblade/tarangstream-speed-test",
-      image: "/images/project-quiet.jpg",
+      image: "/images/tarangstream-showcase.png",
       problem:
         "A single-stream speed test hid variance. Needed download, upload, latency, and jitter in one view.",
       constraint:
@@ -277,7 +275,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "Client-side parser, search, and analytics dashboard over Grok export JSON, persisted in IndexedDB.",
       href: "https://github.com/spellblade/grok-chat-log-analytics",
-      image: "/images/project-field.jpg",
+      image: "/images/grok-chat-log-analytics-showcase.png",
       problem:
         "Grok / X export archives are large JSON dumps. There was no local way to parse, search, and chart them.",
       constraint:
@@ -297,7 +295,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "Python / FastAPI dual-pane transfer app with a job queue, retry and cancel, WebSocket progress, and REST control.",
       href: "https://github.com/spellblade/Cloud-Copy",
-      image: "/images/project-harbor.jpg",
+      image: "/images/cloud-copy-showcase.png",
       problem:
         "Moving files between MEGA and PikPak meant manual downloads and no visibility into queued work.",
       constraint:
@@ -348,8 +346,4 @@ export function newId(prefix: string) {
     return `${prefix}-${crypto.randomUUID().slice(0, 8)}`;
   }
   return `${prefix}-${Math.random().toString(36).slice(2, 10)}`;
-}
-
-export function projectPath(id: string) {
-  return `/work/${id}`;
 }

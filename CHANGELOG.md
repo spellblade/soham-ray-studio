@@ -9,16 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--
+- GitHub branch rulesets: squash-only on `develop`, merge-commit-only on `main`, with CI required.
 
 ### Changed
 
 - Replaced TanStack Start with a Vite SPA and React Router. Studio, Neon, and Better Auth stay.
 - Aligned README, docs index, changelog, EditorConfig, and GitHub templates with universal master template v3 formatting.
+- Runtime is Node 24 / npm 11; CI and `engines` follow `.nvmrc`.
 
 ### Fixed
 
 -
+
+### Removed
+
+- Grok App Builder scaffolding: PWA install chrome, live-preview host bridge, Grok OAuth broker, and platform smoke/brand scripts. Optional identity is email/password only.
 
 ## [0.1.0] - 2026-09-07
 

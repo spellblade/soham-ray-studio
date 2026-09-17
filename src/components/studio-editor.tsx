@@ -428,7 +428,7 @@ function WorkFields({
                 summary: "",
                 description: "",
                 href: "",
-                image: "/images/project-meridian.jpg",
+                image: "",
                 problem: "",
                 constraint: "",
                 decision: "",
@@ -982,9 +982,8 @@ function LockFields() {
       <div>
         <h2 className="font-display text-2xl tracking-tight">Change studio key</h2>
         <p className="mt-2 text-sm text-muted">
-          This private key is the only thing that can publish. Google, X, and
-          email accounts never will. After you change it, the old key stops
-          working.
+          This private key is the only thing that can publish. An email account
+          never will. After you change it, the old key stops working.
         </p>
         <form onSubmit={(e) => void onChangeKey(e)} className="mt-5 space-y-4">
           <Field label="Current key">

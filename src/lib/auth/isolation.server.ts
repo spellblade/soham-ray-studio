@@ -1,13 +1,11 @@
 import { getRequest } from "@/lib/request-context";
 
 /**
- * Fetch-Metadata sibling isolation — **server-only**.
+ * Fetch-Metadata isolation — **server-only**.
  *
- * Apps deployed on `*.grok.me` are "same-site" to each other but MUTUALLY
- * UNTRUSTED, and a `SameSite=Lax` session cookie IS sent on same-site
- * subrequests — so without this, a malicious sibling could make a SCRIPTED
- * (fetch/XHR/form-POST) request to this app's APIs and ride this app's
- * session cookie.
+ * A `SameSite=Lax` cookie is sent on cross-site subrequests from the same
+ * registrable domain. Reject scripted cross-site calls so a foreign page cannot
+ * ride this app's cookies against `/api`.
  */
 export class CrossSiteRequestError extends Error {
   readonly status = 403;

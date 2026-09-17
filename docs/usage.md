@@ -14,7 +14,7 @@ The footer link is quiet on purpose.
 4. **Save & publish** writes the JSON profile. The public site and PDF pick it up after reload.
 5. **Lock** drops the session on this device. **Change key** retires the old passphrase.
 
-Google, X, and email never grant publish rights.
+An email account never grants publish rights.
 
 ## PDF
 

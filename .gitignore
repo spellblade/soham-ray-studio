@@ -38,3 +38,4 @@ startup.sh
 .idea/
 .vscode/
 *.swp
+.kilo/
