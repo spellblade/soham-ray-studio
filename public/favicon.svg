@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" fill="#f4efe6"/>
-  <path fill="#1c1915" fill-rule="evenodd" d="M16 3.5 28.8 28h-5.1l-2.2-5.4H10.5L8.3 28H3.2L16 3.5Zm-4.3 15.2h8.6L16 9.1l-4.3 9.6Z"/>
+  <path
+    fill="none"
+    stroke="#1c1915"
+    stroke-width="3.2"
+    stroke-linecap="butt"
+    d="M22 9.4c-.9-1.8-2.8-3-5.6-3-3.6 0-5.9 2-5.9 4.6 0 2.5 1.7 3.7 5.8 4.8 4.1 1.1 6.2 2.6 6.2 5.6 0 3.4-2.8 5.6-6.8 5.6-3.2 0-5.6-1.4-6.7-3.6"
+  />
 </svg>

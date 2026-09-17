@@ -195,7 +195,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "An editorial portfolio with a passphrase-locked Studio, case-study pages, and a browser PDF export of the same profile stored in Postgres.",
       href: "https://github.com/spellblade/soham-ray-studio",
-      image: "/images/project-folio.jpg",
+      image: "/images/soham-ray-studio-showcase.png",
       problem:
         "A CV needed to be a public site and a maintainable document, without putting the editor behind a public Google or X login.",
       constraint:
@@ -215,7 +215,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "A form-fill product with a local identity vault, heuristic plus optional AI field mapping, and a Manifest V3 extension for Chrome and Edge.",
       href: "https://github.com/spellblade/imprint",
-      image: "/images/project-meridian.jpg",
+      image: "/images/imprint-showcase.png",
       problem:
         "Filling the same identity across sites meant copy-paste and leaking data into cloud form-fillers.",
       constraint:
@@ -235,7 +235,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "In-browser market-data application with BSE, NSE, and MCX price simulation, screener, technical charts, and portfolio revaluation.",
       href: "https://github.com/spellblade/tradepulse",
-      image: "/images/project-northline.jpg",
+      image: "/images/tradepulse-showcase.png",
       problem:
         "Needed a high-frequency simulated Indian exchange UI without paying for live market feeds.",
       constraint:
@@ -255,7 +255,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "Network diagnostics with multi-stream download and upload tests, latency, jitter, and time-series smoothing.",
       href: "https://github.com/spellblade/tarangstream-speed-test",
-      image: "/images/project-quiet.jpg",
+      image: "/images/tarangstream-showcase.png",
       problem:
         "A single-stream speed test hid variance. Needed download, upload, latency, and jitter in one view.",
       constraint:
@@ -275,7 +275,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "Client-side parser, search, and analytics dashboard over Grok export JSON, persisted in IndexedDB.",
       href: "https://github.com/spellblade/grok-chat-log-analytics",
-      image: "/images/project-field.jpg",
+      image: "/images/grok-chat-log-analytics-showcase.png",
       problem:
         "Grok / X export archives are large JSON dumps. There was no local way to parse, search, and chart them.",
       constraint:
@@ -295,7 +295,7 @@ export const DEFAULT_PROFILE: Profile = {
       description:
         "Python / FastAPI dual-pane transfer app with a job queue, retry and cancel, WebSocket progress, and REST control.",
       href: "https://github.com/spellblade/Cloud-Copy",
-      image: "/images/project-harbor.jpg",
+      image: "/images/cloud-copy-showcase.png",
       problem:
         "Moving files between MEGA and PikPak meant manual downloads and no visibility into queued work.",
       constraint:

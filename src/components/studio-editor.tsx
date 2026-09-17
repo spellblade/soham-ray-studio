@@ -428,7 +428,7 @@ function WorkFields({
                 summary: "",
                 description: "",
                 href: "",
-                image: "/images/project-meridian.jpg",
+                image: "",
                 problem: "",
                 constraint: "",
                 decision: "",
